@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'maven'
+    id 'com.palantir.git-version' version '0.11.0'
+}
+
+group 'land.pvp.maintenancemode'
+version '1.0.0'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+}
+
+dependencies {
+    annotationProcessor 'org.projectlombok:lombok:1.16.22'
+    compileOnly 'org.projectlombok:lombok:1.16.22'
+    compileOnly 'net.md-5:bungeecord-api:1.12-SNAPSHOT'
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+}
+
+processResources {
+    def details = versionDetails()
+
+    from('src/main/resources') {
+        include 'bungee.yml'
+        expand('version': details.gitHash)
+    }
+}

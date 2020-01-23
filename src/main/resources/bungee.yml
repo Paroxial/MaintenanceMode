@@ -1,0 +1,4 @@
+name: MaintenanceMode
+version: ${version}
+author: PvP Land Development Team
+main: land.pvp.maintenancemode.MaintenanceModePlugin
